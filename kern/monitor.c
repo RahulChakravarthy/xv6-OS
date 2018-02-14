@@ -12,7 +12,8 @@
 #include <kern/kdebug.h>
 
 #define CMDBUF_SIZE	80	// enough for one VGA text line
-
+#define true 1 // Adding boolean truth value
+#define false 0 // Adding boolean false value
 
 struct Command {
 	const char *name;
@@ -105,7 +106,7 @@ runcmd(char *buf, struct Trapframe *tf)
 		if (strcmp(argv[0], commands[i].name) == 0)
 			return commands[i].func(argc, argv, tf);
 	}
-	cprintf("Unknown command '%s'\n", argv[0]);
+	cprintf("I'm not smart enough to understand '%s'\n", argv[0]);
 	return 0;
 }
 
@@ -118,8 +119,8 @@ monitor(struct Trapframe *tf)
 	cprintf("Type 'help' for a list of commands.\n");
 
 
-	while (1) {
-		buf = readline("My Godlike Operating System> ");
+	while (true) {
+		buf = readline("OG OS > ");
 		if (buf != NULL)
 			if (runcmd(buf, tf) < 0)
 				break;
