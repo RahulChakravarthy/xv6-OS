@@ -95,15 +95,15 @@ LIST_INSERT_HEAD(&flist, g, frob_link);	/* add g as first element in list */
  * linked so that an arbitrary element can be removed without traversing the list.  New
  * elements can be added to the list after an existing element or at the head of the list.
  * A LIST_HEAD structure is declared as follows:
- * 
+ *
  *       LIST_HEAD(HEADNAME, TYPE) head;
- * 
+ *
  * where HEADNAME is the name of the structure to be defined, and TYPE is the type of the
  * elements to be linked into the list.  A pointer to the head of the list can later be
  * declared as:
- * 
+ *
  *       struct HEADNAME *headp;
- * 
+ *
  * (The names head and headp are user selectable.)
  */
 #define	LIST_HEAD(name, type)						\
