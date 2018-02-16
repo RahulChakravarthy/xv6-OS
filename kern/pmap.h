@@ -36,9 +36,7 @@ _paddr(const char *file, int line, void *kva)
  * virtual address.  It panics if you pass an invalid physical address. */
 #define KADDR(pa) _kaddr(__FILE__, __LINE__, pa)
 
-static inline void*
-_kaddr(const char *file, int line, physaddr_t pa)
-{
+static inline void* _kaddr(const char *file, int line, physaddr_t pa) {
 	if (PGNUM(pa) >= npages)
 		_panic(file, line, "KADDR called with invalid pa %08lx", pa);
 	return (void *)(pa + KERNBASE);
@@ -68,17 +66,13 @@ page2pa(struct Page *pp)
 	return (pp - pages) << PGSHIFT;
 }
 
-static inline struct Page*
-pa2page(physaddr_t pa)
-{
+static inline struct Page* pa2page(physaddr_t pa) {
 	if (PGNUM(pa) >= npages)
 		panic("pa2page called with invalid pa");
 	return &pages[PGNUM(pa)];
 }
 
-static inline void*
-page2kva(struct Page *pp)
-{
+static inline void* page2kva(struct Page *pp) {
 	return KADDR(page2pa(pp));
 }
 
